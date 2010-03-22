@@ -1,0 +1,61 @@
+Had to open data source read-only.
+INFO: Open of `US5CA16M.000'
+      using driver `S57' successful.
+1: DSID (None)
+2: AIRARE  # airports. OBJNAM has the name.
+3: ACHBRT  # anchor berth
+4: ACHARE # anchorage area  INFORM has "provisional anchorage area"
+5: BCNLAT (Point) # Beacon, lateral
+6: BCNSPP (Point) # Beacon, special purpose / general
+7: BRIDGE    # bridges!
+8: BUISGL   # building, single
+9: BUAARE   # built up area
+10: BOYLAT (Point)  #Buoy, Lateral
+11: BOYSPP (Point) #Buoy, special purpose / general
+12: CBLARE (Polygon) # Cable area
+13: CBLOHD (Line String) # Cable, Overhead
+14: CTNARE #Caution Area
+15: CGUSTA (Point) # Coastguard Station
+16: COALNE (Line String) # Coastline
+17: DAMCON # Dam
+18: DAYMAR (Point) # Daymark
+19: DEPARE # Depth Area
+20: DEPCNT (Line String) # Depth contour
+21: DRGARE (Polygon) # Dredged Area
+22: DMPGRD # Dumping Ground
+23: DYKCON # Dyke
+24: FAIRWY (Polygon) 
+25: FOGSIG (Point) # Fog signal
+26: HRBFAC # Harbor Facility
+27: LAKARE (Polygon) # lake
+28: LNDARE # Land Area
+29: LNDELV # land elevation
+30: LNDRGN # land region
+31: LNDMRK # landmark
+32: LIGHTS (Point)
+33: MORFAC # Mooring / Warping facility
+34: OBSTRN # underwater obstruction
+35: OFSPLF # Offshore platform
+36: PILPNT (Point) # Pile
+37: PIPARE # Pipeline area
+38: PIPSOL # Pipeline, submarine / on land
+39: PONTON # Pontoon
+40: PRDARE # Production/ storage area
+41: PYLONS 
+42: RTPBCN (Point) # Radio transponder beacon
+43: RDOSTA (Point) # Radio station
+44: RESARE (Polygon) # Restricted Area
+45: RIVERS
+46: SEAARE # Sea area / named water area
+47: SBDARE # Seabed area
+48: SLCONS # Shoreline construction
+49: SILTNK # Silo / tank
+50: SOUNDG (Multi Point) # Sounding
+51: UWTROC (Point) # Underwater / awash rock
+52: WEDKLP # Weed / Kelp
+53: WRECKS
+54: M_CSCL (Polygon) # Compilation / Scale of Data
+55: M_COVR (Polygon) # Coverage
+56: M_NPUB (Polygon) # Nautical Pulication Information
+57: M_NSYS (Polygon) # Navigational System of Marks
+58: M_QUAL (Polygon) # Quality of data
