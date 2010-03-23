@@ -15,9 +15,21 @@ __url__ = "$HeadURL$"
 __cvsversion__ = "$Revision$"
 __date__ = "$Date$"
 
+class S57_wrapper():
+    def __init__(self, mapfile):
+        self._filename = mapfile
+
+    def load(self):
+        open(self._filename)
+
+    def layer(self,layername):
+        return True
+
+
 def main(args):
     """ Put your main command line runner here """
     pass
+
 
 import sys, getopt
 class Main():
