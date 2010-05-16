@@ -25,16 +25,17 @@ def s57_to_osm(feature, layer_name=None):
     osm_tags = {}
     # get hold of what layer this feature is in
     # if it's BOYSPP, create seamark:buoy, seamark=buoy, buoy=special_purpose
-    if layer_name = 'BOYSPP':
-        osm_tags['seamark'] = buoy
+    if layer_name == 'BOYSPP':
+        osm_tags['seamark'] = 'buoy'
         osm_tags['buoy'] = 'special_purpose'
     
     # grab LNAM, stuff into buoy:ref
     osm_tags['buoy:ref'] = feature.LNAM
     #
     # grab BOYSHIP=2, look up in some mystery lookup, set buoy:shape=can
-    boyshp = [] # TODO stick values in here
-    osm_tags['buoy:shape'] = boyshp(feature.BOYSHP)
+ 
+    boyshp_values = [None, 'conical','can', 'spherical', 'pillar', 'spar', 'barrel', 'super-buoy', 'ice buoy']  
+    osm_tags['buoy:shape'] = boyshp_values[feature.BOYSHP]
 
     # grab CATSPM=
 
@@ -61,7 +62,7 @@ def main(args):
     tags = s57_to_osm(s57_buoy, layer_name = 'BOYSPP')
 
     # print them (check them with what we expect)
-    
+    print tags
     # send 'em to OSM via the OSMApi
 
     
