@@ -1,0 +1,17 @@
+Attributes for the layer BOYSPP
+
+seamark=buoy
+seamark:buoy_special_purpose:category=general_warning_mark
+
+buoy= special_purpose
+seamark=buoy
+
+
+buoy:ref= (LNAM)
+BOYSHP=2   buoy:shape=can
+CATSPM = 27     seamark:buoy_special_purpose:category=general_warning_mark
+OBJNAM=SF Airport  Buoy N         name=(name)       seamark:name=(name)
+STATUS=8      buoy:status=private
+SCAMIN=120000   buoy:scale_minimum
+SORDAT=20040914       source:date=20040914
+POINT (-122.381666999999993 37.640278000000002)    latitude=  37.640278000000002      longitude=-122.381666999999993
