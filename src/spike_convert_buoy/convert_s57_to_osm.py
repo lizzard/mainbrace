@@ -37,11 +37,18 @@ def s57_to_osm(feature, layer_name=None):
     osm_tags['buoy:shape'] = boyshp(feature.BOYSHP)
 
     # grab CATSPM=
+
     # CATSPM = 27     seamark:buoy_special_purpose:category=general_warning_mark
+    osm_tags['seamark:buoy_special_purpose:category'] = catspm(feature.CATSPM)
     # OBJNAM=SF Airport  Buoy N         name=(name)       seamark:name=(name)
+    osm_tags['name'] = feature.OBJNAM
+    osm_tags['seamark:name'] = feature.OBJNAM
     # STATUS=8      buoy:status=private
+    osm_tags['buoy:status'] = status(feature.STATUS)
     # SCAMIN=120000   buoy:scale_minimum
+    osm_tags['buoy:scale_minimum']=feature.SCAMIN
     # SORDAT=20040914       source:date=20040914
+    # How are dates stored in open seamap
     # POINT (-122.381666999999993 37.640278000000002)    latitude=  37.640278000000002      longitude=-122.381666999999993
     
     return osm_tags
