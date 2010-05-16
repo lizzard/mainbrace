@@ -13,10 +13,9 @@ __contributors__ = None
 __license__ = "GPL v3"
 
 import sys
-sys.path.append("..")
 from osgeo import ogr
 import OsmApi
-
+sys.path.append("..")
 
 print "I think the password is", sys.argv[1]
 
@@ -64,7 +63,7 @@ def send_to_osm(lat, long, tags):
     print "Sending ",len(tags), " to (",lat,",",long,")"
     password = sys.argv[1]
     MyApi = OsmApi.OsmApi(username="mainbrace", password=password, changesetauto=True)
-    node_init = {u'lat': lat, u'long': long, u'tag': tags}
+    node_init = {u'lat': lat, u'lon': long, u'tag': tags}
     node_data = MyApi.NodeCreate(node_init)
     MyApi.flush()
     print "We just added", node_data['changeset']
