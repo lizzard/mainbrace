@@ -54,7 +54,7 @@ def s57_to_osm(feature, layer_name=None):
     status_values = {1:'permanent',2:'occasional',4:'not_in_use',8:'private',18:'existence_doubtful'}
     osm_tags['buoy:status'] = status_values[int(feature.STATUS)]
     # SCAMIN=120000   buoy:scale_minimum
-    osm_tags['buoy:scale_minimum']=feature.SCAMIN
+    osm_tags['buoy:scale_minimum']=str(feature.SCAMIN)
     # SORDAT=20040914       source:date=20040914
     osm_tags['source:date']=feature.SORDAT
     return osm_tags
@@ -62,12 +62,12 @@ def s57_to_osm(feature, layer_name=None):
 
 def send_to_osm(lat, long, tags):
     print "Sending ",len(tags), " to (",lat,",",long,")"
-
-    MyApi = OsmApi.OsmApi(username="mainbrace", password=sys.argv[1], changesetauto=True)
-    node_init = {'lat': lat, 'long': long, 'tag': tags}
+    password = sys.argv[1]
+    MyApi = OsmApi.OsmApi(username="mainbrace", password=password, changesetauto=True)
+    node_init = {u'lat': lat, u'long': long, u'tag': tags}
     node_data = MyApi.NodeCreate(node_init)
-    print "We just added", node_data['changeset']
     MyApi.flush()
+    print "We just added", node_data['changeset']
     return True
 
 
