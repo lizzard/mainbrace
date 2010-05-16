@@ -12,14 +12,19 @@ __copyright__ = "Copyright Danny O'Brien"
 __contributors__ = None
 __license__ = "GPL v3"
 
+import sys
+sys.path.append("..")
 from osgeo import ogr
+import OsmApi
+
+
+print "I think the password is", sys.argv[1]
 
 def get_example_s57_buoy():
     data_source = ogr.Open("../../data/ENC_ROOT/US5CA16M/US5CA16M.000")
     layer = data_source.GetLayer('BOYSPP')
     feature = layer.GetFeature(637)
     return feature
-
 
 def s57_to_osm(feature, layer_name=None):
     osm_tags = {}
@@ -51,10 +56,20 @@ def s57_to_osm(feature, layer_name=None):
     # SCAMIN=120000   buoy:scale_minimum
     osm_tags['buoy:scale_minimum']=feature.SCAMIN
     # SORDAT=20040914       source:date=20040914
-    # How are dates stored in open seamap??
-    # POINT (-122.381666999999993 37.640278000000002)    latitude=  37.640278000000002      longitude=-122.381666999999993
-    
+    osm_tags['source:date']=feature.SORDAT
     return osm_tags
+
+
+def send_to_osm(lat, long, tags):
+    print "Sending ",len(tags), " to (",lat,",",long,")"
+
+    MyApi = OsmApi.OsmApi(username="mainbrace", password=sys.argv[1], changesetauto=True)
+    node_init = {'lat': lat, 'long': long, 'tag': tags}
+    node_data = MyApi.NodeCreate(node_init)
+    print "We just added", node_data['changeset']
+    MyApi.flush()
+    return True
+
 
 def main(args):
     # Get a particular feature from the S-57 file
@@ -67,7 +82,13 @@ def main(args):
     print tags
     # send 'em to OSM via the OSMApi
 
-    
+    lat = s57_buoy.GetGeometryRef().GetY()
+    long = s57_buoy.GetGeometryRef().GetX()
+    print "I think latitude = ", lat
+    print "I think longitude = ", long
+    sent_ok = send_to_osm(lat, long, tags)
+    if send_ok:
+        print "It sent okay!"
 
 import sys, getopt
 class Main():
