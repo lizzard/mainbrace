@@ -1,0 +1,3 @@
+This code will take a particular buoy from the test file
+../../data/ENC_ROOT/US5CA16M/US5CA16M.000  and output the correct tags to be output to OSM
+
