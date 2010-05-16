@@ -40,14 +40,14 @@ def s57_to_osm(feature, layer_name=None):
     # grab CATSPM=
 
     # CATSPM = 27     seamark:buoy_special_purpose:category=general_warning_mark
-    catspm_values = []
-    osm_tags['seamark:buoy_special_purpose:category'] = catspm_values(feature.CATSPM)
+    catspm_values = {27:'general_warning_mark', 52:'mark_with_unknown_purpose'}
+    osm_tags['seamark:buoy_special_purpose:category'] = catspm_values{feature.CATSPM}
     # OBJNAM=SF Airport  Buoy N         name=(name)       seamark:name=(name)
     osm_tags['name'] = feature.OBJNAM
     osm_tags['seamark:name'] = feature.OBJNAM
     # STATUS=8      buoy:status=private
-    status_values = []
-    osm_tags['buoy:status'] = status_values(feature.STATUS)
+    status_values = {1:'permanent',2:'occasional',4:'not_in_use',8:'private',18:'existence_doubtful'}
+    osm_tags['buoy:status'] = status_values{feature.STATUS}
     # SCAMIN=120000   buoy:scale_minimum
     osm_tags['buoy:scale_minimum']=feature.SCAMIN
     # SORDAT=20040914       source:date=20040914
