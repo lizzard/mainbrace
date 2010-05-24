@@ -413,7 +413,11 @@ for i in range(dataSource.GetLayerCount()):
 	for j in range(layer.GetFeatureCount()):
 		feature = layer.GetNextFeature()
 		geometry = feature.GetGeometryRef()
-		
+
+		if not geometry:
+			print "Skipping metadata feature"
+			continue
+
 		fields = {}
 		
 		for k in range(fieldCount-1):
