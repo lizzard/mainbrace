@@ -14,8 +14,8 @@ __license__ = "GPL v3"
 
 import sys
 from osgeo import ogr
-import OsmApi
 sys.path.append("..")
+import OsmApi
 
 print "I think the password is", sys.argv[1]
 
@@ -59,14 +59,13 @@ def s57_to_osm(feature, layer_name=None):
     return osm_tags
 
 
-def send_to_osm(lat, long, tags):
-    print "Sending ",len(tags), " to (",lat,",",long,")"
+def send_to_osm(lat, lon, tags):
+    print "Sending ",len(tags), " to (",lat,",",lon,")"
     password = sys.argv[1]
     MyApi = OsmApi.OsmApi(username="mainbrace", password=password, changesetauto=True)
-    node_init = {u'lat': lat, u'lon': long, u'tag': tags}
+    node_init = {u'lat': lat, u'lon': lon, u'tag': tags}
     node_data = MyApi.NodeCreate(node_init)
     MyApi.flush()
-    print "We just added", node_data['changeset']
     return True
 
 
@@ -82,11 +81,11 @@ def main(args):
     # send 'em to OSM via the OSMApi
 
     lat = s57_buoy.GetGeometryRef().GetY()
-    long = s57_buoy.GetGeometryRef().GetX()
+    lon = s57_buoy.GetGeometryRef().GetX()
     print "I think latitude = ", lat
-    print "I think longitude = ", long
-    sent_ok = send_to_osm(lat, long, tags)
-    if send_ok:
+    print "I think longitude = ", lon
+    sent_ok = send_to_osm(lat, lon, tags)
+    if sent_ok:
         print "It sent okay!"
 
 import sys, getopt
