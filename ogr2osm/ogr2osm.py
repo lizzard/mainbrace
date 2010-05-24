@@ -452,6 +452,9 @@ for i in range(dataSource.GetLayerCount()):
 		
 		subGeometries = []
 		
+		if geometryType != wkbPoint:  #FIXME we're just skipping non-data points for now
+			continue
+
 		if geometryType == wkbPoint or geometryType == wkbLineString or geometryType == wkbPolygon:
 			subGeometries = [geometry]
 		elif geometryType == wkbMultiPoint or geometryType == wkbMultiLineString or geometryType == wkbMultiPolygon or geometryType == wkbGeometryCollection:
