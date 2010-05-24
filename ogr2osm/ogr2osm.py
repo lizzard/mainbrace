@@ -169,6 +169,8 @@ elif fileExtension == 'kml':
 	driver = ogr.GetDriverByName('KML');
 #elif fileExtension == 'kmz':
 	#driver = ogr.GetDriverByName('KML');
+elif fileExtension == '000':
+    driver = ogr.GetDriverByName("S57")
 else:
 	print "Error: extension " + fileExtension + " is invalid or not implemented yet."
 
