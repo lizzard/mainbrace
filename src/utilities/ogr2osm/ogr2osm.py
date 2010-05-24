@@ -42,7 +42,8 @@
    -a, --attribute-stats Outputs a summary of the different tags / attributes encountered
    -t, --translation    Select the attribute-tags translation method. 
 	                    See the translations/ diredtory for valid values.
-	
+   -l, --layer			Only use given layers
+
  (-e and -p are mutually exclusive. If both are specified, only the last one will be
  taken into account)
 
