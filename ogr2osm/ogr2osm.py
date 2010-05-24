@@ -110,10 +110,11 @@ showProgress     = False
 debugTags        = False
 attributeStats   = False
 translationMethod = None
+selected_layers = None
 
 # Fetch command line parameters: file and source projection
 try:
-	(opts, args) = getopt.getopt(sys.argv[1:], "e:p:hvdt:a", ["epsg","proj4","help","verbose","debug-tags","attribute-stats","translation"])
+	(opts, args) = getopt.getopt(sys.argv[1:], "e:p:hvdt:al:", ["epsg","proj4","help","verbose","debug-tags","attribute-stats","translation","layer"])
 except getopt.GetoptError:
 	print __doc__
 	sys.exit(2)
@@ -144,6 +145,8 @@ for opt, arg in opts:
 		attributeStatsTable = {}
 	elif opt in ("-t", "--translation"):
 		translationMethod = arg
+	elif opt in ("-l","--layer"):
+		selected_layers = arg
 	else:
 		print "Unknown option " + opt
 
@@ -364,6 +367,9 @@ def lineStringToSegments(geometry,references):
 
 for i in range(dataSource.GetLayerCount()):
 	layer = dataSource.GetLayer(i)
+	print "Looking at layer:", layer.GetName()
+	if selected_layers and (layer.GetName() not in selected_layers):
+		continue
 	layer.ResetReading()
 	
 	spatialRef = None
